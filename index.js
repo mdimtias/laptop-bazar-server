@@ -91,6 +91,12 @@ run();
 app.get("/", (req, res) => {
   res.send("Done");
 });
+
+// Handle 404 Error
+app.use((req, res, next) => {
+  res.status(404).json({ error: 'Page not found', success: false });
+});
+
 // Verify JWT Token
 function verifyJwt(req, res, next) {
   const authHeader = req.headers.authorization;
